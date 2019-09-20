@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:furniture_app/screens/details.dart';
-import 'package:furniture_app/util/data.dart';
+// import 'package:furniture_app/screens/details.dart';
+// import 'package:furniture_app/util/data.dart';
 import 'package:furniture_app/widgets/badge.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,8 +19,9 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         actions: <Widget>[
           Center(
-            child: IconBadge(
-              icon: Feather.getIconData("shopping-cart"),
+            child: GestureDetector(
+              child: IconBadge(icon: Feather.getIconData("eye"),),
+              onTap: Provider.of<VoidCallback>(context)
             ),
           ),
           SizedBox(width: 20),
@@ -34,6 +36,7 @@ class _HomeState extends State<Home> {
               "What do you want to\ntranscript today?",
               style: TextStyle(
                 fontSize: 32,
+                fontFamily: "Helvetica Neue",
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -51,10 +54,12 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 child: TextField(
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
+                  // style: TextStyle(
+                  //   fontSize: 18.0,
+                  //   fontFamily: "Helvetica Neue",
+                  //   fontWeight: FontWeight.w500,
+                  //   color: Colors.blueGrey,
+                  // ),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10.0),
                     border: OutlineInputBorder(
@@ -69,14 +74,16 @@ class _HomeState extends State<Home> {
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    hintText: "Upload your video here!",
+                    hintText: "SubSub your video here",
                     prefixIcon: Icon(
                       Feather.getIconData("upload"),
                       color: Colors.black,
                     ),
                     hintStyle: TextStyle(
-                      fontSize: 15.0,
-                      color: Colors.black,
+                      fontSize: 18.0,
+                      fontFamily: "Helvetica Neue",
+                      fontWeight: FontWeight.w500,
+                      color: Colors.blueGrey,
                     ),
                   ),
                   maxLines: 1,
@@ -85,121 +92,121 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          SizedBox(height: 30),
-          Container(
-            height: 275,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: furnitures.length,
-              itemBuilder: (BuildContext context, int index) {
-                Map furniture = furnitures[index];
+          // SizedBox(height: 30),
+          // Container(
+          //   height: 275,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     shrinkWrap: true,
+          //     itemCount: furnitures.length,
+          //     itemBuilder: (BuildContext context, int index) {
+          //       Map furniture = furnitures[index];
 
-                return Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return Details();
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      height: 275,
-                      width: 280,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            furniture['name'],
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.asset(
-                              "${furniture["img"]}",
-                              height: 240,
-                              width: 280,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Popular Products",
-                style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              FlatButton(
-                child: Text(
-                  "View More",
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-          Container(
-            height: 140,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: furnitures.length,
-              itemBuilder: (BuildContext context, int index) {
-                Map furniture = furnitures[index];
+          //       return Padding(
+          //         padding: EdgeInsets.only(right: 20),
+          //         child: GestureDetector(
+          //           onTap: () {
+          //             Navigator.of(context).push(
+          //               MaterialPageRoute(
+          //                 builder: (BuildContext context) {
+          //                   return Details();
+          //                 },
+          //               ),
+          //             );
+          //           },
+          //           child: Container(
+          //             height: 275,
+          //             width: 280,
+          //             child: Column(
+          //               crossAxisAlignment: CrossAxisAlignment.start,
+          //               children: <Widget>[
+          //                 Text(
+          //                   furniture['name'],
+          //                   style: TextStyle(
+          //                     fontWeight: FontWeight.bold,
+          //                     fontSize: 20,
+          //                   ),
+          //                 ),
+          //                 SizedBox(height: 10),
+          //                 ClipRRect(
+          //                   borderRadius: BorderRadius.circular(15),
+          //                   child: Image.asset(
+          //                     "${furniture["img"]}",
+          //                     height: 240,
+          //                     width: 280,
+          //                     fit: BoxFit.cover,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
+          // SizedBox(height: 20),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: <Widget>[
+          //     Text(
+          //       "Popular Products",
+          //       style: TextStyle(
+          //         fontSize: 23,
+          //         fontWeight: FontWeight.w800,
+          //       ),
+          //     ),
+          //     FlatButton(
+          //       child: Text(
+          //         "View More",
+          //         style: TextStyle(
+          //           color: Colors.grey,
+          //         ),
+          //       ),
+          //       onPressed: () {},
+          //     ),
+          //   ],
+          // ),
+          // Container(
+          //   height: 140,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     shrinkWrap: true,
+          //     itemCount: furnitures.length,
+          //     itemBuilder: (BuildContext context, int index) {
+          //       Map furniture = furnitures[index];
 
-                return Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return Details();
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      height: 140,
-                      width: 140,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(
-                          "${furniture["img"]}",
-                          height: 140,
-                          width: 140,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 10),
+          //       return Padding(
+          //         padding: EdgeInsets.only(right: 20),
+          //         child: GestureDetector(
+          //           onTap: () {
+          //             Navigator.of(context).push(
+          //               MaterialPageRoute(
+          //                 builder: (BuildContext context) {
+          //                   return Details();
+          //                 },
+          //               ),
+          //             );
+          //           },
+          //           child: Container(
+          //             height: 140,
+          //             width: 140,
+          //             child: ClipRRect(
+          //               borderRadius: BorderRadius.circular(15),
+          //               child: Image.asset(
+          //                 "${furniture["img"]}",
+          //                 height: 140,
+          //                 width: 140,
+          //                 fit: BoxFit.cover,
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
+          // SizedBox(height: 10),
         ],
       ),
     );

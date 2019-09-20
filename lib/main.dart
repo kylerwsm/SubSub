@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:furniture_app/screens/main_screen.dart';
 import 'package:furniture_app/util/const.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
     runApp(MyApp());
   });
 }
-
 
 class MyApp extends StatefulWidget {
   @override
@@ -28,14 +28,23 @@ class _MyAppState extends State<MyApp> {
     ));
   }
 
+  void toggleMode() {
+    print('Toggling mode');
+    setState(() {
+      isDark = !isDark;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: Constants.appName,
-      theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-      home: MainScreen(),
+    return Provider<VoidCallback>.value(
+      value: toggleMode,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: Constants.appName,
+        theme: isDark ? Constants.darkTheme : Constants.lightTheme,
+        home: MainScreen(),
+      ),
     );
   }
 }
