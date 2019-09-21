@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-// import 'package:furniture_app/screens/details.dart';
-// import 'package:furniture_app/util/data.dart';
-import 'package:furniture_app/widgets/badge.dart';
+import 'package:furniture_app/screens/details.dart';
+import 'package:furniture_app/util/data.dart';
+// import 'package:furniture_app/widgets/badge.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,18 +12,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final TextEditingController _searchControl = new TextEditingController();
+  static Icon _lightIcon = new Icon(FontAwesomeIcons.solidStar);
+  static Icon _darkIcon = new Icon(FontAwesomeIcons.solidMoon);
+
+  // final TextEditingController _searchControl = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Provider.of<bool>(context);
+
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           Center(
             child: GestureDetector(
-              child: IconBadge(icon: Feather.getIconData("eye"),),
-              onTap: Provider.of<VoidCallback>(context)
-            ),
+                child: isDark ? _lightIcon : _darkIcon,
+                onTap: Provider.of<VoidCallback>(context)),
           ),
           SizedBox(width: 20),
         ],
@@ -36,7 +41,7 @@ class _HomeState extends State<Home> {
               "What do you want to\ntranscript today?",
               style: TextStyle(
                 fontSize: 32,
-                fontFamily: "Helvetica Neue",
+                fontFamily: "Helvetica",
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -44,55 +49,48 @@ class _HomeState extends State<Home> {
           SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(right: 20),
-            child: Card(
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  side: BorderSide(color: isDark ? const Color(0xff43464b) : Colors.transparent)
+                  ),
               elevation: 6.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  ),
-                ),
-                child: TextField(
-                  // style: TextStyle(
-                  //   fontSize: 18.0,
-                  //   fontFamily: "Helvetica Neue",
-                  //   fontWeight: FontWeight.w500,
-                  //   color: Colors.blueGrey,
-                  // ),
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(10.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(
-                        color: Colors.white,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white,
-                      ),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    hintText: "SubSub your video here",
-                    prefixIcon: Icon(
+              color: isDark ? const Color(0xff111111) : Colors.white,
+              onPressed: () {},
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    child: Icon(
                       Feather.getIconData("upload"),
-                      color: Colors.black,
-                    ),
-                    hintStyle: TextStyle(
-                      fontSize: 18.0,
-                      fontFamily: "Helvetica Neue",
-                      fontWeight: FontWeight.w500,
-                      color: Colors.blueGrey,
+                      color: isDark ? Colors.white : Colors.black,
                     ),
                   ),
-                  maxLines: 1,
-                  controller: _searchControl,
-                ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        'Upload your video here, and\nit will be SubSub-ed!',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontFamily: "Helvetica",
+                          fontWeight: FontWeight.w600,
+                          color: isDark ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          // SizedBox(height: 30),
+          SizedBox(height: 50),
+          Text("SubSub-ed Transcripts",
+              style: TextStyle(
+                fontSize: 23,
+                fontFamily: "Helvetica",
+                fontWeight: FontWeight.w800,
+              )),
           // Container(
           //   height: 275,
           //   child: ListView.builder(
@@ -101,7 +99,6 @@ class _HomeState extends State<Home> {
           //     itemCount: furnitures.length,
           //     itemBuilder: (BuildContext context, int index) {
           //       Map furniture = furnitures[index];
-
           //       return Padding(
           //         padding: EdgeInsets.only(right: 20),
           //         child: GestureDetector(
@@ -175,7 +172,6 @@ class _HomeState extends State<Home> {
           //     itemCount: furnitures.length,
           //     itemBuilder: (BuildContext context, int index) {
           //       Map furniture = furnitures[index];
-
           //       return Padding(
           //         padding: EdgeInsets.only(right: 20),
           //         child: GestureDetector(
@@ -206,7 +202,7 @@ class _HomeState extends State<Home> {
           //     },
           //   ),
           // ),
-          // SizedBox(height: 10),
+          SizedBox(height: 10),
         ],
       ),
     );

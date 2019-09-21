@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:furniture_app/screens/main_screen.dart';
 import 'package:furniture_app/util/const.dart';
 import 'package:provider/provider.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-void main() async{
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
+void main() async {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
     runApp(MyApp());
   });
 }
@@ -15,7 +17,7 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {  
   bool isDark = false;
 
   @override
@@ -24,28 +26,27 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: isDark ? Constants.darkPrimary : Constants.lightPrimary,
-      statusBarIconBrightness: isDark?Brightness.light:Brightness.dark,
+      statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
     ));
   }
 
   void toggleMode() {
-    print('Toggling mode');
-    setState(() {
-      isDark = !isDark;
-    });
+    setState(() => isDark = !isDark);
   }
 
   @override
   Widget build(BuildContext context) {
     return Provider<VoidCallback>.value(
       value: toggleMode,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: Constants.appName,
-        theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-        home: MainScreen(),
+      child: Provider<bool>.value(
+        value: isDark,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: Constants.appName,
+          theme: isDark ? Constants.darkTheme : Constants.lightTheme,
+          home: MainScreen(),
+        ),
       ),
     );
   }
 }
-
