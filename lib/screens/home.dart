@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:furniture_app/screens/details.dart';
-import 'package:furniture_app/util/data.dart';
+// import 'package:furniture_app/screens/details.dart';
+// import 'package:furniture_app/util/data.dart';
 // import 'package:furniture_app/widgets/badge.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,38 +22,46 @@ class _HomeState extends State<Home> {
     bool isDark = Provider.of<bool>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          Center(
-            child: GestureDetector(
-                child: isDark ? _lightIcon : _darkIcon,
-                onTap: Provider.of<VoidCallback>(context)),
-          ),
-          SizedBox(width: 20),
-        ],
-      ),
+      appBar: PreferredSize(
+          child: AppBar(),
+          preferredSize: Size.fromHeight(0.0)),
       body: ListView(
         padding: EdgeInsets.only(left: 20),
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Text(
-              "What do you want to\ntranscript today?",
-              style: TextStyle(
-                fontSize: 32,
-                fontFamily: "Helvetica",
-                fontWeight: FontWeight.bold,
+          SizedBox(height: 30),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Text(
+                    "What do you want to transcript today?",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontFamily: "Helvetica",
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                    child: isDark ? _lightIcon : _darkIcon,
+                    onTap: Provider.of<VoidCallback>(context)),
+              )
+            ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
           Padding(
             padding: EdgeInsets.only(right: 20),
             child: RaisedButton(
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(10.0),
-                  side: BorderSide(color: isDark ? const Color(0xff43464b) : Colors.transparent)
-                  ),
+                  side: BorderSide(
+                      color: isDark
+                          ? const Color(0xff43464b)
+                          : Colors.transparent)),
               elevation: 6.0,
               color: isDark ? const Color(0xff111111) : Colors.white,
               onPressed: () {},

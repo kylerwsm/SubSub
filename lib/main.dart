@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:furniture_app/screens/main_screen.dart';
+import 'package:furniture_app/screens/home.dart';
+// import 'package:furniture_app/screens/main_screen.dart';
 import 'package:furniture_app/util/const.dart';
 import 'package:provider/provider.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {  
+class _MyAppState extends State<MyApp> {
   bool isDark = false;
 
   @override
@@ -31,7 +32,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   void toggleMode() {
-    setState(() => isDark = !isDark);
+    setState(() {
+      isDark = !isDark;
+    });
   }
 
   @override
@@ -44,7 +47,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: Constants.appName,
           theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-          home: MainScreen(),
+          home: Home(),
         ),
       ),
     );

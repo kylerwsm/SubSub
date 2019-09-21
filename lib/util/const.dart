@@ -14,6 +14,7 @@ class Constants{
   static ThemeData lightTheme = ThemeData(
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
+    // primarySwatch: lightPrimary,
     accentColor:  lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
@@ -33,6 +34,7 @@ class Constants{
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
+    // primarySwatch: darkPrimary,
     accentColor: darkAccent,
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
