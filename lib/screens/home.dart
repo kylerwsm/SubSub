@@ -7,6 +7,9 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/templates/action_button.dart';
+import 'package:image_picker/image_picker.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert';
 
 class Home extends StatefulWidget {
   @override
@@ -16,18 +19,26 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   static Icon _lightIcon = new Icon(Feather.getIconData("eye"));
   static Icon _darkIcon = new Icon(FontAwesomeIcons.solidMoon);
+  var mediaFile;
 
-  // final TextEditingController _searchControl = new TextEditingController();
+  getProgressDialog() {
+    return Center(child: CircularProgressIndicator());
+  }
+
+  Future<void> _uploadMedia() async {
+    setState(() => mediaFile = ImagePicker.pickVideo(source: ImageSource.gallery));
+  }
 
   @override
   Widget build(BuildContext context) {
     bool isDark = Provider.of<bool>(context);
     var buttonWidth = MediaQuery.of(context).size.width * 0.6;
 
-    var uploadAudioButton = Align(
+    var uploadMediaButton = Align(
       alignment: Alignment.center,
       child: ActionButton(
-        child: RaisedButton(
+        onPressed: _uploadMedia,
+        child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0),
               side: BorderSide(
@@ -35,10 +46,10 @@ class _HomeState extends State<Home> {
                       isDark ? const Color(0xff43464b) : Colors.transparent)),
           elevation: 6.0,
           color: isDark ? const Color(0xff111111) : Colors.white,
-          onPressed: () {},
           child: Container(
             width: buttonWidth,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -52,50 +63,7 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
-                    'Upload Audio',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w400,
-                      color: isDark ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-    var uploadVideoButton = Align(
-      alignment: Alignment.center,
-      child: ActionButton(
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              side: BorderSide(
-                  color:
-                      isDark ? const Color(0xff43464b) : Colors.transparent)),
-          elevation: 6.0,
-          color: isDark ? const Color(0xff111111) : Colors.white,
-          onPressed: () {},
-          child: Container(
-            width: buttonWidth,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                  child: Icon(
-                    Feather.getIconData("video"),
-                    color: isDark ? Colors.white : Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Upload Video',
+                    'Upload Media',
                     style: TextStyle(
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
@@ -113,7 +81,7 @@ class _HomeState extends State<Home> {
     var liveButton = Align(
       alignment: Alignment.center,
       child: ActionButton(
-        child: RaisedButton(
+        child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0),
               side: BorderSide(
@@ -121,10 +89,10 @@ class _HomeState extends State<Home> {
                       isDark ? const Color(0xff43464b) : Colors.transparent)),
           elevation: 6.0,
           color: isDark ? const Color(0xff111111) : Colors.white,
-          onPressed: () {},
           child: Container(
             width: buttonWidth,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -153,7 +121,7 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
-    var buttons = [uploadAudioButton, uploadVideoButton, liveButton];
+    var buttons = [uploadMediaButton, liveButton];
 
     return Scaffold(
       appBar:

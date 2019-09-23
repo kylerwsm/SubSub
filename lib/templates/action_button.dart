@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class ActionButton extends StatefulWidget {
   final Widget child;
+  final VoidCallback onPressed;
 
-  ActionButton({this.child});
+  ActionButton({this.child, this.onPressed});
 
   @override
   _ActionButtonState createState() => _ActionButtonState();
@@ -39,6 +40,7 @@ class _ActionButtonState extends State<ActionButton>
 
   void _onTapUp(TapUpDetails details) {
     _controller.reverse();
+    widget.onPressed();
   }
 
   void _onTap() async {
@@ -46,6 +48,7 @@ class _ActionButtonState extends State<ActionButton>
     await Future.delayed(Duration(milliseconds: 50));
     _controller.reverse();
     await Future.delayed(Duration(milliseconds: 50));
+    widget.onPressed();
   }
 
   @override
