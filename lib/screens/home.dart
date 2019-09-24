@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
                 height: 80,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
+                    // shrinkWrap: true,
                     itemCount: buttons.length,
                     itemBuilder: (BuildContext context, int index) {
                       return index == buttons.length - 1
@@ -218,7 +218,8 @@ class _HomeState extends State<Home> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (BuildContext context) {
-                                return Details();
+                                return Details(
+                                    title: Text('Transcript ${(index + 1)}'));
                               },
                             ),
                           );
@@ -226,26 +227,36 @@ class _HomeState extends State<Home> {
                         child: Card(
                           elevation: 6.0,
                           shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0),
+                              borderRadius: new BorderRadius.circular(20),
                               side: BorderSide(
-                                  color: isDark
-                                      ? const Color(0xff43464b)
-                                      : Colors.transparent)),
+                                  color: Colors.transparent)),
                           child: Stack(
                             children: <Widget>[
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(20),
                                 child: Image.asset(
                                   resultTilesBg[index % resultTilesBg.length],
                                   // "${furniture["img"]}",
-                                  height: 140,
+                                  height: 100,
                                   width:
                                       MediaQuery.of(context).size.width * 0.8,
                                   fit: BoxFit.cover,
                                 ),
                               ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                    height: 100,
+                                    child: Opacity(
+                                      opacity: 0.4,
+                                      child: Container(
+                                          color: Theme.of(context)
+                                              .backgroundColor),
+                                    )),
+                              ),
                               Container(
-                                height: 140,
+                                color: Colors.transparent,
+                                height: 100,
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text('Transcript ${(index + 1)}',

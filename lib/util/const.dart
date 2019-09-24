@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-class Constants{
 
+class Constants {
   static String appName = "SubSub";
 
   //Colors for theme
@@ -12,17 +12,21 @@ class Constants{
   static Color darkBG = Colors.black;
 
   static ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     // primarySwatch: lightPrimary,
-    accentColor:  lightAccent,
+    accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
+      color: Color(0xffd0d0d0),
+      brightness: Brightness.light,
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
           color: darkBG,
+          fontFamily: 'Helvetica',
           fontSize: 18.0,
           fontWeight: FontWeight.w800,
         ),
@@ -39,16 +43,17 @@ class Constants{
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
     appBarTheme: AppBarTheme(
+      color: Color(0xff1b1b1b),
+      brightness: Brightness.dark,
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
           color: lightBG,
+          fontFamily: 'Helvetica',
           fontSize: 18.0,
           fontWeight: FontWeight.w800,
         ),
       ),
     ),
   );
-
-
 }

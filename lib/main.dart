@@ -20,21 +20,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isDark = false;
+  bool _isDark = false;
 
   @override
   void initState() {
+    // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   statusBarColor: _isDark ? Constants.darkPrimary : Constants.lightPrimary,
+    //   statusBarIconBrightness: _isDark ? Brightness.light : Brightness.dark,
+    // ));
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     super.initState();
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: isDark ? Constants.darkPrimary : Constants.lightPrimary,
-      statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
-    ));
   }
 
   void toggleMode() {
     setState(() {
-      isDark = !isDark;
+      _isDark = !_isDark;
     });
   }
 
@@ -43,11 +44,11 @@ class _MyAppState extends State<MyApp> {
     return Provider<VoidCallback>.value(
       value: toggleMode,
       child: Provider<bool>.value(
-        value: isDark,
+        value: _isDark,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: Constants.appName,
-          theme: isDark ? Constants.darkTheme : Constants.lightTheme,
+          theme: _isDark ? Constants.darkTheme : Constants.lightTheme,
           home: Home(),
         ),
       ),
