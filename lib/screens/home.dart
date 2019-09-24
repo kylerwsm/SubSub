@@ -7,6 +7,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/templates/action_button.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:convert';
@@ -19,14 +21,21 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   static Icon _lightIcon = new Icon(Feather.getIconData("eye"));
   static Icon _darkIcon = new Icon(FontAwesomeIcons.solidMoon);
-  var mediaFile;
+  var _filePath;
 
   getProgressDialog() {
     return Center(child: CircularProgressIndicator());
   }
 
-  Future<void> _uploadMedia() async {
-    setState(() => mediaFile = ImagePicker.pickVideo(source: ImageSource.gallery));
+  void getImage() async {
+    _filePath = await ImagePicker.pickVideo(source: ImageSource.gallery);
+    String path = _filePath != null ? _filePath.path : "None";
+    print('File Path Retrieved: ' + path);
+    // if (image != null) {
+    //   setState(() {
+    //     _filePath = image;
+    //   });
+    // }
   }
 
   @override
@@ -37,7 +46,7 @@ class _HomeState extends State<Home> {
     var uploadMediaButton = Align(
       alignment: Alignment.center,
       child: ActionButton(
-        onPressed: _uploadMedia,
+        onPressed: getImage,
         child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0),

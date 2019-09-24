@@ -40,7 +40,7 @@ class _ActionButtonState extends State<ActionButton>
 
   void _onTapUp(TapUpDetails details) {
     _controller.reverse();
-    widget.onPressed();
+    // widget.onPressed();
   }
 
   void _onTap() async {
