@@ -223,7 +223,7 @@ class _HomeState extends State<Home> {
                         child: Card(
                           elevation: 6.0,
                           shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(20),
+                              borderRadius: new BorderRadius.circular(10),
                               side: BorderSide(color: Colors.transparent)),
                           child: Stack(
                             children: <Widget>[
@@ -239,10 +239,10 @@ class _HomeState extends State<Home> {
                               //   ),
                               // ),
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(10),
                                 child: Container(
                                   color: Theme.of(context).appBarTheme.color,
-                                  height: 100,
+                                  height: 60,
                                   width:
                                       MediaQuery.of(context).size.width * 0.8,
                                 ),
@@ -260,14 +260,14 @@ class _HomeState extends State<Home> {
                               // ),
                               Container(
                                 color: Colors.transparent,
-                                height: 100,
+                                height: 60,
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text('Transcript ${(index + 1)}',
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: "Helvetica",
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w500,
                                       )),
                                 ),
                               ),
