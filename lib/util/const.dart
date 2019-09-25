@@ -23,7 +23,7 @@ class Constants {
     appBarTheme: AppBarTheme(
       color: Color(0xffe5e5e5),
       brightness: Brightness.light,
-      elevation: 0,
+      elevation: 6.0,
       textTheme: TextTheme(
         title: TextStyle(
           color: darkBG,
@@ -47,7 +47,7 @@ class Constants {
     appBarTheme: AppBarTheme(
       color: Color(0xff1b1b1b),
       brightness: Brightness.dark,
-      elevation: 0,
+      elevation: 6.0,
       textTheme: TextTheme(
         title: TextStyle(
           color: lightBG,
