@@ -17,7 +17,7 @@ class BasicDialogs {
         context: context,
         dialogTitle: 'Coming Soon',
         dialogDesc: 'Feature is still in-progress, and will be coming soon. Thank you for your patience!',
-        leftOption: 'Close',
+        leftOption: 'Dismiss',
         leftAction: null,
         rightOption: null,
         rightAction: null);
