@@ -265,9 +265,9 @@ class _HomeState extends State<Home> {
                                   alignment: Alignment.center,
                                   child: Text('Transcript ${(index + 1)}',
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         fontFamily: "Helvetica",
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w400,
                                       )),
                                 ),
                               ),
