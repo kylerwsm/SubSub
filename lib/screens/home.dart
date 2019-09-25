@@ -23,6 +23,18 @@ class _HomeState extends State<Home> {
   static Icon _lightIcon = new Icon(Feather.getIconData("eye"));
   static Icon _darkIcon = new Icon(FontAwesomeIcons.solidMoon);
   var _filePath;
+  var transcripts;
+
+  @override
+  void initState() {
+    transcripts = [
+      "Transcript on 25/09/19, 13:39",
+      "Transcript on 02/08/19, 12:02",
+      "Transcript on 12/06/18, 01:39",
+      "Transcript on 30/01/18, 22:03"
+    ];
+    super.initState();
+  }
 
   getProgressDialog() {
     return Center(child: CircularProgressIndicator());
@@ -128,13 +140,6 @@ class _HomeState extends State<Home> {
     );
     var buttons = [uploadMediaButton, liveButton];
 
-    var resultTilesBg = [
-      "assets/pic01.jpg",
-      "assets/pic02.jpg",
-      "assets/pic03.jpg",
-      "assets/pic04.jpg"
-    ];
-
     return Scaffold(
       appBar:
           PreferredSize(child: AppBar(), preferredSize: Size.fromHeight(0.0)),
@@ -196,6 +201,19 @@ class _HomeState extends State<Home> {
                     fontWeight: FontWeight.w800,
                   )),
             ),
+            SizedBox(height: 5),
+            Opacity(
+              opacity: 0.7,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Text("Tap to view. Slide left or right to delete.",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: "Helvetica",
+                      fontWeight: FontWeight.w400,
+                    )),
+              ),
+            ),
             SizedBox(height: 20),
             Center(
               child: Container(
@@ -204,74 +222,72 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   physics: ClampingScrollPhysics(),
-                  itemCount: furnitures.length,
+                  itemCount: transcripts.length,
                   itemBuilder: (BuildContext context, int index) {
-                    // Map furniture = furnitures[index];
+                    final item = transcripts[index];
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 20),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) {
-                                return Details(
-                                    title: Text('Transcript ${(index + 1)}'));
-                              },
-                            ),
-                          );
+                      child: Dismissible(
+                        key: Key(item),
+                        // Show a red background as the item is swiped away.
+                        // background: Container(color: Colors.red),
+                        onDismissed: (direction) {
+                          setState(() {
+                            transcripts.removeAt(index);
+                          });
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                              action: SnackBarAction(
+                                  label: 'Undo',
+                                  onPressed: () => setState(
+                                      () => transcripts.insert(index, item))),
+                              content: Text('Transcript deleted',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Helvetica",
+                                    fontWeight: FontWeight.w500,
+                                  ))));
                         },
-                        child: Card(
-                          elevation: 6.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10),
-                              side: BorderSide(color: Colors.transparent)),
-                          child: Stack(
-                            children: <Widget>[
-                              // ClipRRect(
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   child: Image.asset(
-                              //     resultTilesBg[index % resultTilesBg.length],
-                              //     // "${furniture["img"]}",
-                              //     height: 100,
-                              //     width:
-                              //         MediaQuery.of(context).size.width * 0.8,
-                              //     fit: BoxFit.cover,
-                              //   ),
-                              // ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Container(
-                                  color: Theme.of(context).appBarTheme.color,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return Details(title: Text(item));
+                                },
+                              ),
+                            );
+                          },
+                          child: Card(
+                            elevation: 6.0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10),
+                                side: BorderSide(color: Colors.transparent)),
+                            child: Stack(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Container(
+                                    color: Theme.of(context).appBarTheme.color,
+                                    height: 60,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.8,
+                                  ),
+                                ),
+                                Container(
+                                  color: Colors.transparent,
                                   height: 60,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(item,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: "Helvetica",
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                  ),
                                 ),
-                              ),
-                              // ClipRRect(
-                              //   borderRadius: BorderRadius.circular(20),
-                              //   child: Container(
-                              //       height: 100,
-                              //       child: Opacity(
-                              //         opacity: 0.4,
-                              //         child: Container(
-                              //             color: Theme.of(context)
-                              //                 .backgroundColor),
-                              //       )),
-                              // ),
-                              Container(
-                                color: Colors.transparent,
-                                height: 60,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text('Transcript ${(index + 1)}',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontFamily: "Helvetica",
-                                        fontWeight: FontWeight.w400,
-                                      )),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
