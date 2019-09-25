@@ -7,6 +7,7 @@ import 'package:furniture_app/util/data.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/templates/action_button.dart';
+import 'package:furniture_app/templates/basic_dialogs.dart';
 // import 'package:image_picker/image_picker.dart';
 // import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -49,12 +50,9 @@ class _HomeState extends State<Home> {
         onPressed: getImage,
         child: Card(
           shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              side: BorderSide(
-                  color:
-                      isDark ? const Color(0xff43464b) : Colors.transparent)),
+              borderRadius: new BorderRadius.circular(10.0)),
           elevation: 6.0,
-          color: isDark ? const Color(0xff111111) : Colors.white,
+          color: Theme.of(context).appBarTheme.color,
           child: Container(
             width: buttonWidth,
             child: Row(
@@ -66,7 +64,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                   child: Icon(
                     Feather.getIconData("radio"),
-                    color: isDark ? Colors.white : Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 Padding(
@@ -77,7 +75,7 @@ class _HomeState extends State<Home> {
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
                       fontWeight: FontWeight.w400,
-                      color: isDark ? Colors.white : Colors.black,
+                      color: Theme.of(context).iconTheme.color,
                     ),
                   ),
                 ),
@@ -90,14 +88,12 @@ class _HomeState extends State<Home> {
     var liveButton = Align(
       alignment: Alignment.center,
       child: ActionButton(
+        onPressed: () => BasicDialogs().showUnavailableDialog(context),
         child: Card(
           shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              side: BorderSide(
-                  color:
-                      isDark ? const Color(0xff43464b) : Colors.transparent)),
+              borderRadius: new BorderRadius.circular(10.0)),
           elevation: 6.0,
-          color: isDark ? const Color(0xff111111) : Colors.white,
+          color: Theme.of(context).appBarTheme.color,
           child: Container(
             width: buttonWidth,
             child: Row(
@@ -109,7 +105,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                   child: Icon(
                     Feather.getIconData("mic"),
-                    color: isDark ? Colors.white : Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 Padding(
@@ -120,7 +116,7 @@ class _HomeState extends State<Home> {
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
                       fontWeight: FontWeight.w400,
-                      color: isDark ? Colors.white : Colors.black,
+                      color: Theme.of(context).iconTheme.color,
                     ),
                   ),
                 ),
@@ -228,32 +224,40 @@ class _HomeState extends State<Home> {
                           elevation: 6.0,
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20),
-                              side: BorderSide(
-                                  color: Colors.transparent)),
+                              side: BorderSide(color: Colors.transparent)),
                           child: Stack(
                             children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.asset(
-                                  resultTilesBg[index % resultTilesBg.length],
-                                  // "${furniture["img"]}",
-                                  height: 100,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.8,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                              // ClipRRect(
+                              //   borderRadius: BorderRadius.circular(20),
+                              //   child: Image.asset(
+                              //     resultTilesBg[index % resultTilesBg.length],
+                              //     // "${furniture["img"]}",
+                              //     height: 100,
+                              //     width:
+                              //         MediaQuery.of(context).size.width * 0.8,
+                              //     fit: BoxFit.cover,
+                              //   ),
+                              // ),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
-                                    height: 100,
-                                    child: Opacity(
-                                      opacity: 0.4,
-                                      child: Container(
-                                          color: Theme.of(context)
-                                              .backgroundColor),
-                                    )),
+                                  color: Theme.of(context).appBarTheme.color,
+                                  height: 100,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                ),
                               ),
+                              // ClipRRect(
+                              //   borderRadius: BorderRadius.circular(20),
+                              //   child: Container(
+                              //       height: 100,
+                              //       child: Opacity(
+                              //         opacity: 0.4,
+                              //         child: Container(
+                              //             color: Theme.of(context)
+                              //                 .backgroundColor),
+                              //       )),
+                              // ),
                               Container(
                                 color: Colors.transparent,
                                 height: 100,

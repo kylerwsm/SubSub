@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Constants {
   static String appName = "SubSub";
 
-  //Colors for theme
+  // Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
   static Color darkPrimary = Colors.black;
   static Color lightAccent = Colors.orange;
@@ -12,6 +12,7 @@ class Constants {
   static Color darkBG = Colors.black;
 
   static ThemeData lightTheme = ThemeData(
+    iconTheme: IconThemeData(color: darkBG),
     brightness: Brightness.light,
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
@@ -20,7 +21,7 @@ class Constants {
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
-      color: Color(0xffd0d0d0),
+      color: Color(0xffe5e5e5),
       brightness: Brightness.light,
       elevation: 0,
       textTheme: TextTheme(
@@ -35,6 +36,7 @@ class Constants {
   );
 
   static ThemeData darkTheme = ThemeData(
+    iconTheme: IconThemeData(color: lightBG),
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,

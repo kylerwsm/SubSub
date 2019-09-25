@@ -7,7 +7,7 @@ class Details extends StatefulWidget {
   final title;
   final content;
 
-  Details({this.title, this.content});
+  Details({this.title, this.content = 'This is a super duper long sample text and goes longer and longer, and even longer like wow it is still getting longer I don\'t think it will ever stop getting longer okay it is time to stop getting longer just kidding it is still getting longer and it will never stop getting longer because you don\'t choose the long life the long life chooses you'});
 
   @override
   _DetailsState createState() => _DetailsState();
@@ -16,6 +16,29 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: widget.title,), body: Container());
+    return Scaffold(
+        appBar: AppBar(
+          title: widget.title,
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ListView(
+              children: <Widget>[
+                SizedBox(height: 20),
+                Text(
+                  widget.content,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: "Helvetica",
+                    fontWeight: FontWeight.normal,
+                    height: 1.5
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ));
   }
 }
