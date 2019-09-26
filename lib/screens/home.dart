@@ -2,7 +2,7 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:furniture_app/screens/details.dart';
-import 'package:furniture_app/util/data.dart';
+// import 'package:furniture_app/util/data.dart';
 // import 'package:furniture_app/widgets/badge.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,7 +11,6 @@ import 'package:furniture_app/templates/basic_dialogs.dart';
 // import 'package:image_picker/image_picker.dart';
 // import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:http/http.dart' as http;
 // import 'dart:convert';
 
 class Home extends StatefulWidget {
@@ -86,7 +85,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                       color: Theme.of(context).iconTheme.color,
                     ),
                   ),
@@ -127,7 +126,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                       color: Theme.of(context).iconTheme.color,
                     ),
                   ),
@@ -208,6 +207,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.only(left: 20),
                 child: Text("Tap to view. Slide left or right to delete.",
                     style: TextStyle(
+                      color: Theme.of(context).iconTheme.color,
                       fontSize: 14,
                       fontFamily: "Helvetica",
                       fontWeight: FontWeight.w400,
@@ -280,9 +280,10 @@ class _HomeState extends State<Home> {
                                     alignment: Alignment.center,
                                     child: Text(item,
                                         style: TextStyle(
+                                          color: Theme.of(context).iconTheme.color,
                                           fontSize: 18,
                                           fontFamily: "Helvetica",
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w600,
                                         )),
                                   ),
                                 ),

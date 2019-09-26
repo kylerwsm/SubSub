@@ -11,8 +11,11 @@ class Constants {
   static Color lightBG = Color(0xfffcfcff);
   static Color darkBG = Colors.black;
 
+  // Other colors
+  static Color blueText = Color(0xff0080ff);
+
   static ThemeData lightTheme = ThemeData(
-    iconTheme: IconThemeData(color: darkBG),
+    iconTheme: IconThemeData(color: blueText),
     brightness: Brightness.light,
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
@@ -21,7 +24,7 @@ class Constants {
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
-      color: Color(0xffe5e5e5),
+      color: Color(0xfff2f2f2),
       brightness: Brightness.light,
       elevation: 6.0,
       textTheme: TextTheme(
