@@ -11,22 +11,31 @@ class Constants {
   static Color lightBG = Color(0xfffcfcff);
   static Color darkBG = Colors.black;
 
-  // Other colors
-  static Color blueText = Color(0xff0080ff);
+  // iOS System Colors
+  static Color lightSystemBlue = Color(0xff007aff);
+  static Color lightSystemTeal = Color(0xff5ac8fa);
+  static Color lightSystemGray5 = Color(0xffe5e5ea);
+  static Color lightSystemGray6 = Color(0xfff2f2f7);
+
+  static Color darkSystemBlue = Color(0xff0a84ff);
+  static Color darkSystemTeal = Color(0xff64d2ff);
+  static Color darkSystemGray5 = Color(0xffc2c2e);
+  static Color darkSystemGray6 = Color(0xff1c1c1e);
 
   static ThemeData lightTheme = ThemeData(
-    iconTheme: IconThemeData(color: blueText),
+    iconTheme: IconThemeData(color: lightSystemBlue),
     brightness: Brightness.light,
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
+    buttonColor: lightSystemGray6,
     // primarySwatch: lightPrimary,
     accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
-      color: Color(0xfff2f2f2),
+      // color: Color(0xfff2f2f2),
       brightness: Brightness.light,
-      elevation: 6.0,
+      elevation: 0.0,
       textTheme: TextTheme(
         title: TextStyle(
           color: darkBG,
@@ -39,18 +48,19 @@ class Constants {
   );
 
   static ThemeData darkTheme = ThemeData(
-    iconTheme: IconThemeData(color: lightBG),
+    iconTheme: IconThemeData(color: darkSystemBlue),
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
+    buttonColor: darkSystemGray6,
     // primarySwatch: darkPrimary,
     accentColor: darkAccent,
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
     appBarTheme: AppBarTheme(
-      color: Color(0xff1b1b1b),
+      // color: Color(0xff1b1b1b),
       brightness: Brightness.dark,
-      elevation: 6.0,
+      elevation: 0.0,
       textTheme: TextTheme(
         title: TextStyle(
           color: lightBG,

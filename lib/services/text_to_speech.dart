@@ -12,8 +12,13 @@ const _urlPrefix =
 class TextToSpeech {
   final String content;
   final Language language;
+  AudioPlayer _audioPlayer;
 
   TextToSpeech({this.content, this.language});
+
+  void stopAudio() async {
+    await _audioPlayer.stop();
+  }
 
   void playAudio() async {
     var encodedContent = Uri.encodeQueryComponent(content);
@@ -28,8 +33,8 @@ class TextToSpeech {
     final bytes = response.bodyBytes;
     var path = await writeCounter(bytes);
 
-    AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
-    await audioPlayer.play(path, isLocal: true);
+    _audioPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
+    await _audioPlayer.play(path, isLocal: true);
   }
 
   String get contentLanguage {

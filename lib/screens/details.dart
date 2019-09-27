@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/feather.dart';
+// import 'package:flutter_icons/feather.dart';
 import 'package:furniture_app/services/text_to_speech.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 // import 'package:furniture_app/util/data.dart';
@@ -18,7 +18,40 @@ class Details extends StatefulWidget {
   _DetailsState createState() => _DetailsState();
 }
 
-class _DetailsState extends State<Details> {
+class _DetailsState extends State<Details> with TickerProviderStateMixin {
+  AnimationController _animatedController;
+  bool _isPlaying = false;
+  TextToSpeech _textToSpeech;
+
+  @override
+  void initState() {
+    _animatedController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animatedController.dispose();
+    super.dispose();
+  }
+
+  void _handleOnPressed() {
+    setState(() {
+      if (!_isPlaying) {
+        _animatedController.forward();
+        _textToSpeech =
+            TextToSpeech(content: widget.content, language: Language.english);
+        _textToSpeech.playAudio();
+        _isPlaying = true;
+      } else {
+        _animatedController.reverse();
+        _textToSpeech.stopAudio();
+        _isPlaying = false;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +60,14 @@ class _DetailsState extends State<Details> {
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: 20),
-              child: GestureDetector(
-                  onTap: () => TextToSpeech(
-                          content: widget.content, language: Language.english)
-                      .playAudio(),
-                  child: Icon(Feather.getIconData('play'))),
+              child: IconButton(
+                  iconSize: 32,
+                  onPressed: _handleOnPressed,
+                  icon: AnimatedIcon(
+                    icon: AnimatedIcons.play_pause,
+                    progress: _animatedController,
+                    color: Theme.of(context).iconTheme.color,
+                  )),
             )
           ],
         ),

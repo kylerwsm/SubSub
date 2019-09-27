@@ -62,8 +62,8 @@ class _HomeState extends State<Home> {
         child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0)),
-          elevation: 6.0,
-          color: Theme.of(context).appBarTheme.color,
+          elevation: 0.0,
+          color: Theme.of(context).buttonColor,
           child: Container(
             width: buttonWidth,
             child: Row(
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       color: Theme.of(context).iconTheme.color,
                     ),
                   ),
@@ -103,8 +103,8 @@ class _HomeState extends State<Home> {
         child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0)),
-          elevation: 6.0,
-          color: Theme.of(context).appBarTheme.color,
+          elevation: 0.0,
+          color: Theme.of(context).buttonColor,
           child: Container(
             width: buttonWidth,
             child: Row(
@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontSize: 16.0,
                       fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       color: Theme.of(context).iconTheme.color,
                     ),
                   ),
@@ -207,7 +207,6 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.only(left: 20),
                 child: Text("Tap to view. Slide left or right to delete.",
                     style: TextStyle(
-                      color: Theme.of(context).iconTheme.color,
                       fontSize: 14,
                       fontFamily: "Helvetica",
                       fontWeight: FontWeight.w400,
@@ -258,7 +257,7 @@ class _HomeState extends State<Home> {
                             );
                           },
                           child: Card(
-                            elevation: 6.0,
+                            elevation: 0.0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(10),
                                 side: BorderSide(color: Colors.transparent)),
@@ -267,7 +266,7 @@ class _HomeState extends State<Home> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Container(
-                                    color: Theme.of(context).appBarTheme.color,
+                                    color: Theme.of(context).buttonColor,
                                     height: 60,
                                     width:
                                         MediaQuery.of(context).size.width * 0.8,
@@ -281,9 +280,9 @@ class _HomeState extends State<Home> {
                                     child: Text(item,
                                         style: TextStyle(
                                           color: Theme.of(context).iconTheme.color,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontFamily: "Helvetica",
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w500,
                                         )),
                                   ),
                                 ),
