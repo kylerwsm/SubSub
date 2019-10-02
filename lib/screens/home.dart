@@ -12,6 +12,7 @@ import 'package:furniture_app/templates/basic_dialogs.dart';
 // import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'dart:convert';
+import 'package:furniture_app/services/speech_to_text.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,6 +24,7 @@ class _HomeState extends State<Home> {
   static Icon _darkIcon = new Icon(FontAwesomeIcons.solidMoon);
   var _filePath;
   var transcripts;
+  SpeechToText _stt;
 
   @override
   void initState() {
@@ -43,6 +45,8 @@ class _HomeState extends State<Home> {
     _filePath = await ImagePicker.pickVideo(source: ImageSource.gallery);
     String path = _filePath != null ? _filePath.path : "None";
     print('File Path Retrieved: ' + path);
+    _stt = SpeechToText(vidPath: path);
+    _stt.extractAudio();
     // if (image != null) {
     //   setState(() {
     //     _filePath = image;
