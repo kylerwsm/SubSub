@@ -2,16 +2,11 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:furniture_app/screens/details.dart';
-// import 'package:furniture_app/util/data.dart';
-// import 'package:furniture_app/widgets/badge.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:furniture_app/templates/action_button.dart';
 import 'package:furniture_app/templates/basic_dialogs.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'dart:convert';
 import 'package:furniture_app/services/speech_to_text.dart';
 
 class Home extends StatefulWidget {
@@ -29,10 +24,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     transcripts = [
-      "Transcript on 25/09/19, 13:39",
-      "Transcript on 02/08/19, 12:02",
-      "Transcript on 12/06/18, 01:39",
-      "Transcript on 30/01/18, 22:03"
+      "Sample Transcript",
     ];
     super.initState();
   }
@@ -45,103 +37,140 @@ class _HomeState extends State<Home> {
     _filePath = await ImagePicker.pickVideo(source: ImageSource.gallery);
     String path = _filePath != null ? _filePath.path : "None";
     print('File Path Retrieved: ' + path);
-    _stt = SpeechToText(vidPath: path);
-    _stt.extractAudio();
-    // if (image != null) {
-    //   setState(() {
-    //     _filePath = image;
-    //   });
-    // }
+
+    if (path == null) {
+      _stt = SpeechToText(vidPath: path);
+      _stt.extractAudio();
+    } else {
+      print('No media is picked by the user');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     bool isDark = Provider.of<bool>(context);
-    var buttonWidth = MediaQuery.of(context).size.width * 0.6;
+    var buttonWidth = MediaQuery.of(context).size.width * 0.9;
 
-    var uploadMediaButton = Align(
-      alignment: Alignment.center,
-      child: ActionButton(
-        onPressed: getImage,
-        child: Card(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0)),
-          elevation: 0.0,
-          color: Theme.of(context).buttonColor,
-          child: Container(
-            width: buttonWidth,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                  child: Icon(
-                    Feather.getIconData("radio"),
+    var whatIsSubSubButton = ActionButton(
+      onPressed: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return Details(title: Text('What is SubSub?'), content: 'Living in the ever-globalising world, it has become a norm and necessity for us to be able to communicate across culture and language barriers. As local university students in Singapore, we are exposed to our globalised teaching community and peers. You see, even in the same language, accents alone can pose a challenging problem in our ability to absorb information verbally. This will be especially true for our peers who are exchange students. We want to alleviate this problem using technology, and that formed the foundation of SubSub.\n\nHere at SubSub, we believe in an inclusive society. The advancement and introduction of technology should never change that. We aim to improve ways people can consume media by leveraging on existing technologies. Specifically, to do this, we are looking into revolutionalising the usage of off-the-shelf speech-to-text, text-to-speech, and translation technologies.\n\nSubSub is Made by Students, for Students.\n\nStay tuned to find out more.');
+          },
+        ),
+      ),
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(10.0)),
+        elevation: 0.0,
+        color: Theme.of(context).buttonColor,
+        child: Container(
+          width: buttonWidth,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: Icon(
+                  Feather.getIconData("help-circle"),
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  'What is SubSub?',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontFamily: "Helvetica",
+                    fontWeight: FontWeight.w500,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Upload Media',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
-    var liveButton = Align(
-      alignment: Alignment.center,
-      child: ActionButton(
-        onPressed: () => BasicDialogs().showUnavailableDialog(context),
-        child: Card(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0)),
-          elevation: 0.0,
-          color: Theme.of(context).buttonColor,
-          child: Container(
-            width: buttonWidth,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                  child: Icon(
-                    Feather.getIconData("mic"),
+    var uploadMediaButton = ActionButton(
+      onPressed: getImage,
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(10.0)),
+        elevation: 0.0,
+        color: Theme.of(context).buttonColor,
+        child: Container(
+          width: buttonWidth,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: Icon(
+                  Feather.getIconData("radio"),
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  'Upload Media',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontFamily: "Helvetica",
+                    fontWeight: FontWeight.w500,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Live Transcript',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontFamily: "Helvetica",
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
-    var buttons = [uploadMediaButton, liveButton];
+    var liveButton = ActionButton(
+      onPressed: () => BasicDialogs().showUnavailableDialog(context),
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(10.0)),
+        elevation: 0.0,
+        color: Theme.of(context).buttonColor,
+        child: Container(
+          width: buttonWidth,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: Icon(
+                  Feather.getIconData("mic"),
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  'Live Transcript',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontFamily: "Helvetica",
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
 
     return Scaffold(
       appBar:
@@ -177,27 +206,21 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(height: 10),
-            Container(
-                height: 80,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    // shrinkWrap: true,
-                    itemCount: buttons.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index == buttons.length - 1
-                          ? Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                              child: buttons[(index.abs()) % buttons.length],
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                              child: buttons[(index.abs()) % buttons.length],
-                            );
-                    })),
+            Column(
+              children: <Widget>[
+                whatIsSubSubButton,
+                SizedBox(height: 10),
+                uploadMediaButton,
+                SizedBox(
+                  height: 10,
+                ),
+                liveButton
+              ],
+            ),
             SizedBox(height: 50),
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Text("SubSub-ed Transcripts",
+              child: Text('Transcripts',
                   style: TextStyle(
                     fontSize: 23,
                     fontFamily: "Helvetica",
@@ -209,7 +232,7 @@ class _HomeState extends State<Home> {
               opacity: 0.7,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: Text("Tap to view. Slide left or right to delete.",
+                child: Text("Tap to view. Swipe to delete.",
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: "Helvetica",
@@ -220,7 +243,7 @@ class _HomeState extends State<Home> {
             SizedBox(height: 20),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
+                width: MediaQuery.of(context).size.width * 0.9,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -229,11 +252,9 @@ class _HomeState extends State<Home> {
                   itemBuilder: (BuildContext context, int index) {
                     final item = transcripts[index];
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.only(bottom: 10),
                       child: Dismissible(
                         key: Key(item),
-                        // Show a red background as the item is swiped away.
-                        // background: Container(color: Colors.red),
                         onDismissed: (direction) {
                           setState(() {
                             transcripts.removeAt(index);
@@ -272,8 +293,7 @@ class _HomeState extends State<Home> {
                                   child: Container(
                                     color: Theme.of(context).buttonColor,
                                     height: 60,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.8,
+                                    width: MediaQuery.of(context).size.width,
                                   ),
                                 ),
                                 Container(
@@ -283,7 +303,8 @@ class _HomeState extends State<Home> {
                                     alignment: Alignment.center,
                                     child: Text(item,
                                         style: TextStyle(
-                                          color: Theme.of(context).iconTheme.color,
+                                          color:
+                                              Theme.of(context).iconTheme.color,
                                           fontSize: 16,
                                           fontFamily: "Helvetica",
                                           fontWeight: FontWeight.w500,
