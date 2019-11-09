@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:furniture_app/screens/home.dart';
-// import 'package:furniture_app/screens/main_screen.dart';
-import 'package:furniture_app/util/const.dart';
+import 'package:subsub/screens/home.dart';
+import 'package:subsub/util/const.dart';
 import 'package:provider/provider.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() async {
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])

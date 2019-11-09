@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_icons/feather.dart';
-import 'package:furniture_app/services/text_to_speech.dart';
-// import 'package:flutter_icons/flutter_icons.dart';
-// import 'package:furniture_app/util/data.dart';
-// import 'package:furniture_app/widgets/badge.dart';
+import 'package:subsub/transcription/text_to_speech.dart';
 
 class Details extends StatefulWidget {
   final title;

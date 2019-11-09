@@ -1,13 +1,13 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:furniture_app/screens/details.dart';
+import 'package:subsub/screens/details.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:furniture_app/templates/action_button.dart';
-import 'package:furniture_app/templates/basic_dialogs.dart';
+import 'package:subsub/templates/action_button.dart';
+import 'package:subsub/templates/basic_dialogs.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:furniture_app/services/speech_to_text.dart';
+import 'package:subsub/transcription/speech_to_text.dart';
 
 class Home extends StatefulWidget {
   @override

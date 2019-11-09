@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/screens/home.dart';
-// import 'package:flutter_icons/flutter_icons.dart';
+import 'package:subsub/screens/home.dart';
 
 class MainScreen extends StatefulWidget {
   @override
